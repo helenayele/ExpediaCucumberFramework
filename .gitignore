@@ -1,0 +1,4 @@
+/workspace.xml
+target/
+/libraries/*.xml
+/.idea/*.xml
