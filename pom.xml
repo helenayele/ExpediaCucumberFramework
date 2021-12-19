@@ -39,7 +39,11 @@
         <artifactId>cucumber-picocontainer</artifactId>
         <version>6.11.0</version>
     </dependency>
-
+    <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>5.0.3</version>
+    </dependency>
 </dependencies>
     <build>
         <plugins>
@@ -56,6 +60,13 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M4</version>
+                <configuration>
+                <environmentVariables>
+                <env>${env}</env>
+                <browser>${browser}</browser>
+            </environmentVariables>
+
+            </configuration>
               </plugin>
         </plugins>
     </build>

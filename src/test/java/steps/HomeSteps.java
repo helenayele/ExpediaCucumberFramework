@@ -3,21 +3,27 @@ package steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import io.cucumber.junit.Cucumber;
-import org.junit.runner.RunWith;
+import org.junit.Assert;
+import pages.HomePage;
 
-@RunWith(Cucumber.class)
-public class HomeSteps {
+public class HomeSteps extends BaseStep {
+
+    public HomeSteps() throws Exception {
+    }
+
     @Given("^I am navigated to Expedia$")
-    public void navigateToExpedia(){
-        System.out.println("navigateToExpedia");
+    public void navigateToExpedia() throws Exception {
+        getHomePage().launchApp();
+        Assert.assertEquals(true,getHomePage().ifNavigatedToExpedia());
     }
-    @When("^I choose Hotel Booking tab$")
-    public void chooseHotelBookingTab(){
-        System.out.println("I Choose Hotel Tab");
+
+    @When("^I choose Hotel Booking Tab$")
+    public void iChooseHotelBookingTab() throws Exception {
+        getHomePage().navigateToHotelTAB();
     }
-    @And("^I provide Hotel Booking Information$")
-    public void provideHotelBookingInformation(){
-        System.out.println("Provide Hotel Booking Information");
+
+    @And("^I provide (.*?) Hotel Booking Information$")
+    public void iProvideHotelBookingInformation(String dataset) throws Exception {
+        getHomePage().addHotelBookingInformation(data(dataset).get("city"));
     }
 }
